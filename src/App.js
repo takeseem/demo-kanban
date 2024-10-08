@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
   const todoList = [
@@ -24,14 +25,30 @@ function App() {
   );
   const KanbanCardList = ({ list }) => list.map(item => <KanbanCard {...item} />);
 
-  const KanbanNewCard = () => (
-    <li className='kanban-card'>
-      <h3>添加新任务</h3>
-      <div className='card-title'>
-        <input type='text' placeholder='请输入任务名称' />
-      </div>
-    </li>
-  );
+  const KanbanNewCard = ({ onSumbit }) => {
+    const [title, setTitle] = useState('');
+    const handleChange = (e) => {
+      setTitle(e.target.value);
+    };
+    const handleKeyDown = (e) => {
+      if (e.keyCode === 13) {
+        onSumbit(title);
+      }
+    };
+    return (
+      <li className='kanban-card'>
+        <h3>添加新任务</h3>
+        <div className='card-title'>
+          <input type='text' placeholder='请输入任务名称' onChange={handleChange} onKeyDown={handleKeyDown} />
+        </div>
+      </li>
+    );
+  };
+
+  const handleSubmit = (title) => {
+    todoList.unshift({ title, time: new Date().toLocaleString() });
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -42,7 +59,7 @@ function App() {
         <section className='kanban-column column-todo'>
           <h2>待办事项<button>⊕添加新任务</button></h2>
           <ul>
-            <KanbanNewCard />
+            <KanbanNewCard onSumbit={handleSubmit} />
             <KanbanCardList list={todoList} />
           </ul>
         </section>
