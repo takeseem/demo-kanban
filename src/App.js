@@ -3,11 +3,11 @@ import './App.css';
 import { useState } from 'react';
 
 function App() {
-  const todoList = [
+  const [todoList, setTodoList] = useState([
     { id: 1, title: '任务-1', time: '2024-10-08 10:35' },
     { id: 3, title: '任务-3', time: '2024-10-08 10:35' },
     { id: 3, title: '任务-5', time: '2024-10-08 10:35' },
-  ];
+  ]);
   const ongoingList = [
     { id: 1, title: '任务-4', time: '2024-10-08 10:35' },
     { id: 2, title: '任务-2', time: '2024-10-08 10:35' },
@@ -46,7 +46,7 @@ function App() {
   };
 
   const handleSubmit = (title) => {
-    todoList.unshift({ title, time: new Date().toLocaleString() });
+    setTodoList([{ title, time: new Date().toLocaleString() }, ...todoList]);
   };
 
   return (
