@@ -12,27 +12,35 @@ function App() {
         <section className='kanban-column column-todo'>
           <h2>待办事项</h2>
           <ul>
-            <li>
-              <div>任务-1</div>
-              <div>2024-10-08 10:35</div>
+            <li className='kanban-card'>
+              <div className='card-title'>任务-1</div>
+              <div className='card-time'>2024-10-08 10:35</div>
+            </li>
+            <li className='kanban-card'>
+              <div className='card-title'>任务-1</div>
+              <div className='card-time'>2024-10-08 10:35</div>
+            </li>
+            <li className='kanban-card'>
+              <div className='card-title'>任务-1</div>
+              <div className='card-time'>2024-10-08 10:35</div>
             </li>
           </ul>
         </section>
         <section className='kanban-column column-ongoing'>
           <h2>进行中</h2>
           <ul>
-            <li>
-              <div>任务-1</div>
-              <div>2024-10-08 10:35</div>
+            <li className='kanban-card'>
+              <div className='card-title'>任务-1</div>
+              <div className='card-time'>2024-10-08 10:35</div>
             </li>
           </ul>
         </section>
         <section className='kanban-column column-done'>
           <h2>已完成</h2>
           <ul>
-            <li>
-              <div>任务-1</div>
-              <div>2024-10-08 10:35</div>
+            <li className='kanban-card'>
+              <div className='card-title'>任务-1</div>
+              <div className='card-time'>2024-10-08 10:35</div>
             </li>
           </ul>
         </section>
