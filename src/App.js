@@ -46,7 +46,7 @@ function App() {
   };
 
   const handleSubmit = (title) => {
-    setTodoList([{ title, time: new Date().toLocaleString() }, ...todoList]);
+    setTodoList(old => [{ title, time: new Date().toLocaleString() }, ...old]);
   };
 
   return (
