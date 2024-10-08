@@ -101,3 +101,11 @@
   font-size: 0.8rem;
   color: #333;
 }
+
+.kanban-column > h2 > button {
+  float: right;
+  border: 0;
+  border-radius: 1rem;
+  font-size: 1rem;
+  margin-top: 0.2rem;
+}

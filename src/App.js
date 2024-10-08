@@ -23,6 +23,15 @@ function App() {
     </li>
   );
   const KanbanCardList = ({ list }) => list.map(item => <KanbanCard {...item} />);
+
+  const KanbanNewCard = () => (
+    <li className='kanban-card'>
+      <h3>添加新任务</h3>
+      <div className='card-title'>
+        <input type='text' placeholder='请输入任务名称' />
+      </div>
+    </li>
+  );
   return (
     <div className="App">
       <header className="App-header">
@@ -31,8 +40,9 @@ function App() {
       </header>
       <main className="kanban-board">
         <section className='kanban-column column-todo'>
-          <h2>待办事项</h2>
+          <h2>待办事项<button>⊕添加新任务</button></h2>
           <ul>
+            <KanbanNewCard />
             <KanbanCardList list={todoList} />
           </ul>
         </section>
