@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 function App() {
   const [todoList, setTodoList] = useState([
@@ -35,11 +35,21 @@ function App() {
         onSumbit(title);
       }
     };
+
+    // 使用 useRef 创建 input 的引用
+    const inputRef = useRef(null);
+    // 使用 useEffect 在组件渲染后调用 focus
+    useEffect(() => {
+      if (inputRef.current) {
+        inputRef.current.focus(); // 让 input 元素获得焦点
+      }
+    }, []); // 空数组确保这个 effect 只在初次渲染时运行一次
+    
     return (
       <li className='kanban-card'>
         <h3>添加新任务</h3>
         <div className='card-title'>
-          <input type='text' placeholder='请输入任务名称' onChange={handleChange} onKeyDown={handleKeyDown} />
+          <input type='text' placeholder='请输入任务名称' onChange={handleChange} onKeyDown={handleKeyDown} ref={inputRef} />
         </div>
       </li>
     );
