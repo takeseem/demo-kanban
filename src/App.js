@@ -45,8 +45,13 @@ function App() {
     );
   };
 
+  const [showAdd, setShowAdd] = useState(false);
+  const handleAddClick = () => {
+    setShowAdd(true);
+  };
   const handleSubmit = (title) => {
     setTodoList(old => [{ title, time: new Date().toLocaleString() }, ...old]);
+    setShowAdd(false);
   };
 
   return (
@@ -57,9 +62,9 @@ function App() {
       </header>
       <main className="kanban-board">
         <section className='kanban-column column-todo'>
-          <h2>待办事项<button>⊕添加新任务</button></h2>
+          <h2>待办事项<button onClick={handleAddClick} disabled={showAdd}>⊕添加新任务</button></h2>
           <ul>
-            <KanbanNewCard onSumbit={handleSubmit} />
+            {showAdd && <KanbanNewCard onSumbit={handleSubmit} />}
             <KanbanCardList list={todoList} />
           </ul>
         </section>
