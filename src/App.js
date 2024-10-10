@@ -64,33 +64,39 @@ function App() {
     setShowAdd(false);
   };
 
+  const KanbanColumn = ({ title, className, list, children }) => (
+    <section className={`kanban-column ${className}`}>
+      <h2>{title}</h2>
+      <ul>
+        {children}
+        <KanbanCardList list={list} />
+      </ul>
+    </section>
+  );
+
+  const KanbanBoard = ({ children }) => (
+    <main className="kanban-board">
+      {children}
+    </main>
+  );
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1>我的看板</h1>
       </header>
-      <main className="kanban-board">
-        <section className='kanban-column column-todo'>
-          <h2>待办事项<button onClick={handleAddClick} disabled={showAdd}>⊕添加新任务</button></h2>
-          <ul>
-            {showAdd && <KanbanNewCard onSumbit={handleSubmit} />}
-            <KanbanCardList list={todoList} />
-          </ul>
-        </section>
-        <section className='kanban-column column-ongoing'>
-          <h2>进行中</h2>
-          <ul>
-            <KanbanCardList list={ongoingList} />
-          </ul>
-        </section>
-        <section className='kanban-column column-done'>
-          <h2>已完成</h2>
-          <ul>
-            <KanbanCardList list={doneList} />
-          </ul>
-        </section>
-      </main>
+      <KanbanBoard>
+        <KanbanColumn
+          title={<>待办事项<button onClick={handleAddClick} disabled={showAdd}>⊕添加新任务</button></>}
+          className={'column-todo'}
+          list={todoList}
+        >
+          {showAdd && <KanbanNewCard onSumbit={handleSubmit} />}
+        </KanbanColumn>
+        <KanbanColumn title="进行中" className="column-ongoing" list={ongoingList} />
+        <KanbanColumn title="已完成" className="column-done" list={doneList} />
+      </KanbanBoard>
     </div>
   );
 }
